@@ -18,12 +18,6 @@ class TodoRepository {
         final todoModelList =
             dataList?.map((e) => TodoModel.fromJson(e)).toList() ?? [];
 
-        for (var i in todoModelList) {
-          log(i.title);
-        }
-
-        log(response.statusCode.toString());
-
         return todoModelList;
       }
 
