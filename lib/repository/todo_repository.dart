@@ -26,4 +26,24 @@ class TodoRepository {
       log("Error ${e.toString()}");
     }
   }
+
+  static Future<void> deleteTodo(String todoItemId) async {
+    final String url =
+        'https://6866622d89803950dbb27925.mockapi.io/ap1/v1/GroceryItems/$todoItemId';
+
+    try {
+      final response = await http.delete(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        log(response.body);
+
+        // final todoModelList =
+        //     dataList?.map((e) => TodoModel.fromJson(e)).toList() ?? [];
+
+        // return todoModelList;
+      }
+    } catch (e) {
+      log("Error ${e.toString()}");
+    }
+  }
 }

@@ -1,14 +1,39 @@
+import 'package:api_test/form/add_todo_form.dart';
 import 'package:api_test/models/todo_model.dart';
 import 'package:api_test/repository/todo_repository.dart';
 import 'package:flutter/material.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
   const Homepage({super.key});
 
   @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Homepage'), centerTitle: true),
+      appBar: AppBar(
+        title: Text('Homepage'),
+        centerTitle: true,
+        actions: [
+          // IconButton(
+          //   onPressed: () {
+          //     setState(() {
+          //       TodoRepository.fetchAlbum();
+          //     });
+          //   },
+          //   icon: Icon(Icons.refresh),
+          // ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          showDialog(context: context, builder: (context) => AddTodoForm());
+        },
+      ),
       body: Center(
         child: Column(
           children: [
@@ -42,28 +67,45 @@ class Homepage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                             ),
                             // height: 100,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Row(
                               children: [
-                                Text(
-                                  'Title: ${todo.title}',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Title: ${todo.title}',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    Text(
+                                      'UserId: ${todo.userId}',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    Text(
+                                      'isCompleted: ${todo.completed}',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  'UserId: ${todo.userId}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                                Text(
-                                  'isCompleted: ${todo.completed}',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w500,
+                                Spacer(),
+                                IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      TodoRepository.deleteTodo(todo.id!);
+                                      TodoRepository.fetchAlbum();
+                                    });
+                                  },
+                                  icon: Icon(
+                                    Icons.delete_outline,
+                                    color: Colors.red,
                                   ),
                                 ),
                               ],

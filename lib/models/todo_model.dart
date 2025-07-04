@@ -1,12 +1,12 @@
 class TodoModel {
   final int userId;
-  final String id;
+  final String? id;
   final String title;
   final bool completed;
 
   TodoModel({
     required this.userId,
-    required this.id,
+    this.id,
     required this.title,
     required this.completed,
   });
@@ -21,6 +21,6 @@ class TodoModel {
   }
 
   Map<String, dynamic> toJson() {
-    return {"userID": userId, "id": id, 'title': title, "Completed": completed};
+    return {"userId": userId, 'title': title, "Completed": completed};
   }
 }
