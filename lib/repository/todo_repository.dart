@@ -27,6 +27,31 @@ class TodoRepository {
     }
   }
 
+  static Future<void> postTodo(TodoModel todo) async {
+    final String url =
+        'https://6866622d89803950dbb27925.mockapi.io/ap1/v1/GroceryItems';
+
+    final data = {
+      "userId": todo.userId,
+      "title": todo.title,
+      "Completed": todo.completed,
+      "id": "122",
+    };
+
+    try {
+      final response = await http.post(Uri.parse(url), body: jsonEncode(data));
+
+      if (response.statusCode == 200) {
+        log(response.body);
+      }
+
+      log(response.body);
+      log(response.statusCode.toString());
+    } catch (e) {
+      log("Error ${e.toString()}");
+    }
+  }
+
   static Future<void> deleteTodo(String todoItemId) async {
     final String url =
         'https://6866622d89803950dbb27925.mockapi.io/ap1/v1/GroceryItems/$todoItemId';
@@ -36,11 +61,6 @@ class TodoRepository {
 
       if (response.statusCode == 200) {
         log(response.body);
-
-        // final todoModelList =
-        //     dataList?.map((e) => TodoModel.fromJson(e)).toList() ?? [];
-
-        // return todoModelList;
       }
     } catch (e) {
       log("Error ${e.toString()}");
