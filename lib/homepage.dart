@@ -1,4 +1,5 @@
 import 'package:api_test/form/add_todo_form.dart';
+import 'package:api_test/form/edit_todo_form.dart';
 import 'package:api_test/models/todo_model.dart';
 import 'package:api_test/repository/todo_repository.dart';
 import 'package:flutter/material.dart';
@@ -96,17 +97,34 @@ class _HomepageState extends State<Homepage> {
                                   ],
                                 ),
                                 Spacer(),
-                                IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      TodoRepository.deleteTodo(todo.id!);
-                                      TodoRepository.fetchAlbum();
-                                    });
-                                  },
-                                  icon: Icon(
-                                    Icons.delete_outline,
-                                    color: Colors.red,
-                                  ),
+                                Row(
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              EditTodoForm(todo: todo),
+                                        );
+                                      },
+                                      icon: Icon(
+                                        Icons.edit_outlined,
+                                        color: Colors.blue,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          TodoRepository.deleteTodo(todo.id!);
+                                          TodoRepository.fetchAlbum();
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.delete_outline,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),

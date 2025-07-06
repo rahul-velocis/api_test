@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class TodoRepository {
   static const header = {'Content-Type': 'application/json'};
-  
+
   static Future<List<TodoModel>?> fetchAlbum() async {
     final String url =
         'https://6866622d89803950dbb27925.mockapi.io/ap1/v1/GroceryItems';
@@ -42,6 +42,37 @@ class TodoRepository {
 
     try {
       final response = await http.post(
+        Uri.parse(url),
+
+        headers: header,
+
+        body: jsonEncode(data),
+      );
+
+      if (response.statusCode == 200) {
+        log(response.body);
+      }
+
+      log(response.body);
+      log(response.statusCode.toString());
+    } catch (e) {
+      log("Error ${e.toString()}");
+    }
+  }
+
+  static Future<void> editTodo(TodoModel todo) async {
+    final String url =
+        'https://6866622d89803950dbb27925.mockapi.io/ap1/v1/GroceryItems/${todo.id}';
+
+    final data = {
+      "userId": todo.userId,
+      "title": todo.title,
+      "Completed": todo.completed,
+      "id": todo.id,
+    };
+
+    try {
+      final response = await http.put(
         Uri.parse(url),
 
         headers: header,
