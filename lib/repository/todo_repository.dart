@@ -5,6 +5,8 @@ import 'package:api_test/models/todo_model.dart';
 import 'package:http/http.dart' as http;
 
 class TodoRepository {
+  static const header = {'Content-Type': 'application/json'};
+  
   static Future<List<TodoModel>?> fetchAlbum() async {
     final String url =
         'https://6866622d89803950dbb27925.mockapi.io/ap1/v1/GroceryItems';
@@ -39,7 +41,13 @@ class TodoRepository {
     };
 
     try {
-      final response = await http.post(Uri.parse(url), body: jsonEncode(data));
+      final response = await http.post(
+        Uri.parse(url),
+
+        headers: header,
+
+        body: jsonEncode(data),
+      );
 
       if (response.statusCode == 200) {
         log(response.body);
