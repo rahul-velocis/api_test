@@ -75,6 +75,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
               );
 
               TodoRepository.postTodo(todo);
+              TodoRepository.fetchAlbum();
             }
             Navigator.of(context).pop();
           },

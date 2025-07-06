@@ -86,6 +86,7 @@ class _EditTodoFormState extends State<EditTodoForm> {
               );
 
               TodoRepository.editTodo(todo);
+              TodoRepository.fetchAlbum();
             }
             Navigator.of(context).pop();
           },

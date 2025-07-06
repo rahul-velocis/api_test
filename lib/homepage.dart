@@ -34,6 +34,7 @@ class _HomepageState extends State<Homepage> {
         child: Icon(Icons.add),
         onPressed: () {
           showDialog(context: context, builder: (context) => AddTodoForm());
+          setState(() {});
         },
       ),
       body: Center(
@@ -101,6 +102,7 @@ class _HomepageState extends State<Homepage> {
                                           builder: (context) =>
                                               EditTodoForm(todo: todo),
                                         );
+                                    
                                       },
                                       icon: Icon(
                                         Icons.edit_outlined,
