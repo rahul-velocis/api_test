@@ -95,7 +95,7 @@ class _HomepageState extends State<Homepage> {
                                 Row(
                                   children: [
                                     IconButton(
-                                      onPressed: () {
+                                      onPressed: () async {
                                         showDialog(
                                           context: context,
                                           builder: (context) =>
