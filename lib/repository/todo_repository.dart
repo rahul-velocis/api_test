@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class TodoRepository {
   static const header = {'Content-Type': 'application/json'};
 
-  static Future<List<TodoModel>?> fetchAlbum() async {
+  static Future<List<TodoModel>> fetchAlbum() async {
     final String url =
         'https://6866622d89803950dbb27925.mockapi.io/ap1/v1/GroceryItems';
 
@@ -26,10 +26,11 @@ class TodoRepository {
       return [];
     } catch (e) {
       log("Error ${e.toString()}");
+      return [];
     }
   }
 
-  static Future<void> postTodo(TodoModel todo) async {
+  static Future<void> createTodo(TodoModel todo) async {
     final String url =
         'https://6866622d89803950dbb27925.mockapi.io/ap1/v1/GroceryItems';
 

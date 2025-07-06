@@ -1,8 +1,12 @@
 import 'package:api_test/homepage.dart';
+import 'package:api_test/provider/todo_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(create: (context) => TodoProvider(), child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {

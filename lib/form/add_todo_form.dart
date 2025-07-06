@@ -1,6 +1,8 @@
 import 'package:api_test/models/todo_model.dart';
+import 'package:api_test/provider/todo_provider.dart';
 import 'package:api_test/repository/todo_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddTodoForm extends StatefulWidget {
   const AddTodoForm({super.key});
@@ -74,8 +76,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                 completed: isCompleted,
               );
 
-              TodoRepository.postTodo(todo);
-              TodoRepository.fetchAlbum();
+              context.read<TodoProvider>().createTodo(todo);
             }
             Navigator.of(context).pop();
           },
