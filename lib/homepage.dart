@@ -12,7 +12,6 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
