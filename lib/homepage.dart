@@ -12,6 +12,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,14 +20,14 @@ class _HomepageState extends State<Homepage> {
         title: Text('Homepage'),
         centerTitle: true,
         actions: [
-          // IconButton(
-          //   onPressed: () {
-          //     setState(() {
-          //       TodoRepository.fetchAlbum();
-          //     });
-          //   },
-          //   icon: Icon(Icons.refresh),
-          // ),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                TodoRepository.fetchAlbum();
+              });
+            },
+            icon: Icon(Icons.refresh),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -38,12 +39,6 @@ class _HomepageState extends State<Homepage> {
       body: Center(
         child: Column(
           children: [
-            // ElevatedButton(
-            //   onPressed: () {
-            //     TodoRepository.fetchAlbum();
-            //   },
-            //   child: Text('Get API data'),
-            // ),
             FutureBuilder(
               future: TodoRepository.fetchAlbum(),
               builder: (context, snapshot) {
