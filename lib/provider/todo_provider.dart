@@ -29,9 +29,6 @@ class TodoProvider extends ChangeNotifier {
 
     await TodoRepository.createTodo(todo);
 
-    _isLoading = true;
-    notifyListeners();
-
     final newTodo = await TodoRepository.fetchAlbum();
 
     _todos = newTodo;
@@ -46,8 +43,6 @@ class TodoProvider extends ChangeNotifier {
 
     await TodoRepository.deleteTodo(id);
 
-    _isLoading = true;
-    notifyListeners();
 
     final newTodo = await TodoRepository.fetchAlbum();
 
@@ -62,9 +57,6 @@ class TodoProvider extends ChangeNotifier {
     notifyListeners();
 
     await TodoRepository.editTodo(todo);
-
-    _isLoading = true;
-    notifyListeners();
 
     final newTodo = await TodoRepository.fetchAlbum();
 
